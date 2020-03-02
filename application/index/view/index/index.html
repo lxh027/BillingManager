@@ -48,32 +48,32 @@
             <h5 class="sidenav-heading">订单管理</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
                 <li><a href="__INDEX__/index/index"> <i class="icon-home"></i>主页                             </a></li>
-                <li><a href=""> <i class="icon-bill"></i>业务单列表                            </a></li>
-                <li><a href=""> <i class="icon-check"></i>新建业务单                             </a></li>
+                <li><a href=""> <i class="icon-bill"></i>业务单列表 </a></li>
+                <li><a href=""> <i class="icon-check"></i>新建业务单 </a></li>
             </ul>
         </div>
         <div class="admin-menu">
             <h5 class="sidenav-heading">客户管理</h5>
             <ul id="side-customer-menu" class="side-menu list-unstyled">
-                <li> <a href="#"> <i class="icon-screen"> </i>客户列表</a></li>
-                <li> <a href="#"> <i class="icon-flask"> </i>新建客户</a></li>
+                <li> <a href="#"> <i class="icon-user"> </i>客户列表</a></li>
+                <li> <a href="#"> <i class="icon-presentation"> </i>新建客户</a></li>
             </ul>
         </div>
         {if $authority == "管理员"}
-            <div class="admin-menu">
-                <h5 class="sidenav-heading">项目管理</h5>
-                <ul id="side-product-menu" class="side-menu list-unstyled">
-                    <li> <a href="__INDEX__/category/index"> <i class="icon-screen"> </i>项目列表</a></li>
-                    <li> <a href="__INDEX__/category/add"> <i class="icon-screen"> </i>添加项目/分类</a></li>
-                </ul>
-            </div>
-            <div class="admin-menu">
-                <h5 class="sidenav-heading">人员管理</h5>
-                <ul id="side-user-menu" class="side-menu list-unstyled">
-                    <li> <a href="#"> <i class="icon-screen"> </i>员工列表</a></li>
-                    <li> <a href="#"> <i class="icon-flask"> </i>添加员工</a></li>
-                </ul>
-            </div>
+        <div class="admin-menu">
+            <h5 class="sidenav-heading">项目管理</h5>
+            <ul id="side-product-menu" class="side-menu list-unstyled">
+                <li> <a href="__INDEX__/category/index"> <i class="icon-screen"> </i>项目列表</a></li>
+                <li> <a href="__INDEX__/category/add"> <i class="icon-padnote"> </i>添加项目/分类</a></li>
+            </ul>
+        </div>
+        <div class="admin-menu">
+            <h5 class="sidenav-heading">人员管理</h5>
+            <ul id="side-user-menu" class="side-menu list-unstyled">
+                <li> <a href="#"> <i class="icon-form"> </i>员工列表</a></li>
+                <li> <a href="#"> <i class="icon-website"> </i>添加员工</a></li>
+            </ul>
+        </div>
         {/if}
     </div>
 </nav>
