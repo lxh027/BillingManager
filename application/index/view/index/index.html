@@ -48,15 +48,15 @@
             <h5 class="sidenav-heading">订单管理</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
                 <li><a href="__INDEX__/index/index"> <i class="icon-home"></i>主页                             </a></li>
-                <li><a href=""> <i class="icon-bill"></i>业务单列表 </a></li>
-                <li><a href=""> <i class="icon-check"></i>新建业务单 </a></li>
+                <li><a href="__INDEX__/bill/index"> <i class="icon-bill"></i>业务单列表 </a></li>
+                <li><a href="__INDEX__/bill/add"> <i class="icon-check"></i>新建业务单 </a></li>
             </ul>
         </div>
         <div class="admin-menu">
             <h5 class="sidenav-heading">客户管理</h5>
             <ul id="side-customer-menu" class="side-menu list-unstyled">
-                <li> <a href="#"> <i class="icon-user"> </i>客户列表</a></li>
-                <li> <a href="#"> <i class="icon-presentation"> </i>新建客户</a></li>
+                <li> <a href="__INDEX__/customer/index"> <i class="icon-user"> </i>客户列表</a></li>
+                <li> <a href="__INDEX__/customer/add"> <i class="icon-presentation"> </i>新建客户</a></li>
             </ul>
         </div>
         {if $authority == "管理员"}
@@ -70,8 +70,8 @@
         <div class="admin-menu">
             <h5 class="sidenav-heading">人员管理</h5>
             <ul id="side-user-menu" class="side-menu list-unstyled">
-                <li> <a href="#"> <i class="icon-form"> </i>员工列表</a></li>
-                <li> <a href="#"> <i class="icon-website"> </i>添加员工</a></li>
+                <li> <a href="__INDEX__/user/index"> <i class="icon-form"> </i>员工列表</a></li>
+                <li> <a href="__INDEX__/user/add"> <i class="icon-website"> </i>添加员工</a></li>
             </ul>
         </div>
         {/if}

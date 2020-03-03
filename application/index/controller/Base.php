@@ -15,9 +15,9 @@ class Base extends Controller
     {
         parent::__construct();
         if (!Session::has('name')) {
-            $this->redirect('index/login/index');
-            /*Session::set('name', '123');
-            Session::set('authority', '管理员');*/
+            //$this->redirect('index/login/index');
+            Session::set('name', '123');
+            Session::set('authority', '管理员');
         }
         $this->assign('name', session('name'));
         $this->assign('authority', session('authority'));

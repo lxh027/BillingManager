@@ -95,62 +95,6 @@
         </nav>
     </header>
 
-    <section class="forms">
-        <div class="container-fluid">
-            <header>
-                <h1 class="h3 display">添加分类/项目           </h1>
-            </header>
-            <div class="column">
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h4>添加分类</h4>
-                        </div>
-                        <div class="card-body">
-                            <form class="form-group">
-                                <div class="form-group row">
-                                    <div class="col-sm-10">
-                                        <input id="category" type="email" placeholder="请输入分类名" class="form-control form-control-success">
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="form-group row">
-                                <div class="col-sm-10 offset-sm-0">
-                                    <button id="add_category" class="btn btn-primary">添加</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h4>添加项目</h4>
-                        </div>
-                        <div class="card-body">
-                            <form class="form-group">
-                                <div class="form-group row">
-                                    <div class="col-sm-10">
-                                        <select name="account" id="select_category" class="form-control">
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <input id="product" type="email" placeholder="请输入分类名" class="form-control form-control-success">
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="form-group row">
-                                <div class="col-sm-10 offset-sm-0">
-                                    <button id="add_product" class="btn btn-primary">添加</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <footer class="main-footer">
         <div class="container-fluid">
@@ -174,55 +118,5 @@
 </html>
 
 <script>
-    $(document).ready(function () {
-        $.ajax({
-            url: "__INDEX__/category/getAllCategory",
-            type: "get",
-            dataType: "json",
-            data: {},
-            success: function (data) {
-                if (data.status == 0) {
-                    const category_list = data.data;
-                    for (let i = 0; i < category_list.length; i++) {
-                        const option = "<option>" + category_list[i]['name'] + "</option>";
-                        $("#select_category").append(option);
-                    }
-                } else {
-                    alert(data.message);
-                }
-            }
-        });
-    });
-
-    $("#add_category").click(function () {
-        $.ajax({
-            url: "__INDEX__/category/addCategory",
-            type: "post",
-            dataType: "json",
-            data: {
-                'category': $("#category").val()
-            },
-            success: function (data) {
-                alert(data.message);
-                location.reload();
-            }
-        });
-    });
-
-    $("#add_product").click(function () {
-        $.ajax({
-            url: "__INDEX__/category/addProduct",
-            type: "post",
-            dataType: "json",
-            data: {
-                'product': $("#product").val(),
-                'category': $("#select_category").val()
-            },
-            success: function (data) {
-                alert(data.message);
-                location.reload();
-            }
-        })
-    });
 
 </script>
