@@ -95,7 +95,54 @@
         </nav>
     </header>
 
-
+    <section class="forms">
+        <div class="container-fluid">
+            <header>
+                <h1 class="h3 display">添加客户</h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>用户信息</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="customer">订货单位</label>
+                                    <input type="text" id="customer" placeholder="客户" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact">联系人</label>
+                                    <input type="text" id="contact" placeholder="联系人" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">电话</label>
+                                    <input type="text" id="number" placeholder="电话号码" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">地址</label>
+                                    <input type="text" id="address" placeholder="地址" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="deliver_type">送货方式</label>
+                                    <select name="deliver_type" id="deliver_type" class="form-control">
+                                        <option value=0 >送货</option>
+                                        <option value=1 >自提</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <div class="form-group row">
+                                <div class="col-sm-10 offset-sm-5">
+                                    <button id="add" class="btn btn-primary col-md-1">添加</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="main-footer">
         <div class="container-fluid">
@@ -119,6 +166,27 @@
 </html>
 
 <script>
-
+    $("#add").click(function () {
+        $.ajax({
+            url: "__INDEX__/customer/addCustomer",
+            type: "post",
+            dataType: "json",
+            data: {
+                'name': $("#customer").val(),
+                'contact': $("#contact").val(),
+                'number': $("#number").val(),
+                'address': $("#address").val(),
+                'deliver': $("#deliver_type").val()
+            },
+            success: function (data) {
+                if (data.status == 0) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    });
 
 </script>
