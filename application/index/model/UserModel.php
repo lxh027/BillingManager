@@ -10,6 +10,21 @@ class UserModel extends Model
     protected $table = 'user';
 
     /**
+     * @usage 获取所有在职员工
+     * @param void
+     * @return array
+     */
+    public function getAllEmployee() {
+        try {
+            $where = ['status' => 1];
+            $result = $this->field(['id', 'name', 'authority'])->where($where)->select();
+            return ['code' => CODE_SUCCESS, 'msg' => '查询成功', 'data' => $result];
+        } catch(DbException $e) {
+            return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
+        }
+    }
+
+    /**
      * @usage 判断登录
      * @param int account
      * @param string password
