@@ -327,6 +327,29 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
+                            <h4>送货日期</h4>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label for="year" class="sr-only">年</label>
+                                    <input id="year" type="number" placeholder="年" class="mr-3 form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="month" class="sr-only">月</label>
+                                    <input id="month" type="number" placeholder="月" class="mr-3 form-control form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="day" class="sr-only">日</label>
+                                    <input id="day" type="number" placeholder="日" class="mr-3 form-control form-control">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
                             <h4>备注</h4>
                         </div>
                         <div class="card-body">
@@ -348,7 +371,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -501,6 +523,50 @@
                         const option = "<option value='"+product_list[i]['id']+"'>" + product_list[i]['product'] + "</option>";
                         $("#product").html(option);
                     }f
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    });
+
+    $("#add_bill").click(function () {
+        $.ajax({
+            url: "__INDEX__/bill/addBill",
+            type: "post",
+            dataType: "json",
+            data: {
+                "sno": $("#sno").val(),
+                "contract": $("#contract").val(),
+                "bill_type": $("#bill_type").val(),
+                "product": $("#product").val(),
+                "price_unit": $("#price_unit").val(),
+                "width": $("#width").val(),
+                "height": $("#height").val(),
+                "length_unit": $("#length_unit").val(),
+                "product_num": $("#product_num").val()*$("#unit").val(),
+                "price": $("#price").val(),
+                "amount": $("#amount").val(),
+                "pay": $("#pre_pay").val(),
+                "favour": $("#favour").val(),
+                "settlement": $("#settlement").val(),
+                "customer": $("#customer").val(),
+                "contact": $("#contact").val(),
+                "number": $("#number").val(),
+                "address": $("#address").val(),
+                "deliver_type": $("#deliver_type").val(),
+                "clerk": $("#clerk").val(),
+                "designer": $("#designer").val(),
+                "tracker": $("#tracker").val(),
+                "source": $("#source").val(),
+                "writer": $("#writer").val(),
+                "remark": $("#remark").val(),
+                "comment": $("#comment").val(),
+                "deliver_date": $("#year").val()+"-"+$("#month").val()+"-"+$("#day").val()
+            },
+            success: function (data) {
+                if (data.status == 0) {
+                    alert(data.message);
                 } else {
                     alert(data.message);
                 }
