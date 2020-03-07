@@ -521,10 +521,12 @@
             success: function (data) {
                 if (data.status == 0) {
                     const product_list = data.data;
+                    let option = "";
                     for (let i = 0; i < product_list.length; i++) {
-                        const option = "<option value='"+product_list[i]['id']+"'>" + product_list[i]['product'] + "</option>";
-                        $("#product").html(option);
+                        const op = "<option value='"+product_list[i]['id']+"'>" + product_list[i]['product'] + "</option>";
+                        option += op;
                     }
+                    $("#product").html(option);
                 } else {
                     alert(data.message);
                 }
