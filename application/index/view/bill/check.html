@@ -1,10 +1,524 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订单管理系统</title>
+    <meta name="description" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="__STATIC__/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="__STATIC__/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="__STATIC__/css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="__STATIC__/css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="__STATIC__/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="__STATIC__/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="__STATIC__/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="__STATIC__/img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
+<!-- Side Navbar -->
+<nav class="side-navbar">
+    <div class="side-navbar-wrapper">
+        <!-- Sidebar Header    -->
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+            <!-- User Info-->
+            <div class="sidenav-header-inner text-center"><img src="__STATIC__/img/user.jpg" alt="person" class="img-fluid rounded-circle">
+                <h2 class="h5">{$name}</h2><span>{$authority}</span>
+            </div>
+            <!-- Small Brand information, appears on minimized sidebar-->
+            <div class="sidenav-header-logo"><a href="__INDEX__/index/index" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+        </div>
+        <!-- Sidebar Navigation Menus-->
+        <div class="main-menu">
+            <h5 class="sidenav-heading">订单管理</h5>
+            <ul id="side-main-menu" class="side-menu list-unstyled">
+                <li><a href="__INDEX__/index/index"> <i class="icon-home"></i>主页                             </a></li>
+                <li><a href="__INDEX__/bill/index"> <i class="icon-bill"></i>业务单列表 </a></li>
+                <li><a href="__INDEX__/bill/add"> <i class="icon-check"></i>新建业务单 </a></li>
+            </ul>
+        </div>
+        <div class="admin-menu">
+            <h5 class="sidenav-heading">客户管理</h5>
+            <ul id="side-customer-menu" class="side-menu list-unstyled">
+                <li> <a href="__INDEX__/customer/index"> <i class="icon-user"> </i>客户列表</a></li>
+                <li> <a href="__INDEX__/customer/add"> <i class="icon-presentation"> </i>新建客户</a></li>
+            </ul>
+        </div>
+        {if $authority == "管理员"}
+        <div class="admin-menu">
+            <h5 class="sidenav-heading">项目管理</h5>
+            <ul id="side-product-menu" class="side-menu list-unstyled">
+                <li> <a href="__INDEX__/category/index"> <i class="icon-screen"> </i>项目列表</a></li>
+                <li> <a href="__INDEX__/category/add"> <i class="icon-padnote"> </i>添加项目/分类</a></li>
+            </ul>
+        </div>
+        <div class="admin-menu">
+            <h5 class="sidenav-heading">人员管理</h5>
+            <ul id="side-user-menu" class="side-menu list-unstyled">
+                <li> <a href="__INDEX__/user/index"> <i class="icon-form"> </i>员工列表</a></li>
+                <li> <a href="__INDEX__/user/add"> <i class="icon-website"> </i>添加员工</a></li>
+            </ul>
+        </div>
+        {/if}
+    </div>
+</nav>
 
+<div class="page">
+    <!-- navbar-->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="__INDEX__/index/index" class="navbar-brand">
+                        <div class="brand-text d-none d-md-inline-block"> <strong class="text-primary">订单管理系统</strong></div></a></div>
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <!-- Log out-->
+                        <li class="nav-item"><a href="__INDEX__/index/logout" class="nav-link logout"> <span class="d-none d-sm-inline-block">登出</span><i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="forms">
+        <div class="container-fluid">
+            <header>
+                <h1 class="h3">添加订单</h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>单号信息</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label>业务单号</label>
+                                    <input type="text" id="sno" readonly="readonly" placeholder="业务单号" class="form-control">
+                                </div>
+                            </form>
+                            <form>
+                                <div class="form-group">
+                                    <label>合同号</label>
+                                    <input type="text" id="contract" readonly="readonly" placeholder="合同号" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bill_type">单据类型</label>
+                                    <select name="bill_type" id="bill_type" readonly="readonly" class="form-control">
+                                        <option value="0">正常</option>
+                                        <option value="1">返工</option>
+                                        <option value="2">小样</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>项目</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="category">项目分类</label>
+                                    <select name="category" id="category" readonly="readonly" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product">项目</label>
+                                    <select name="product" id="product" readonly="readonly" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price_unit">计价方式</label>
+                                    <select name="price_unit" id="price_unit" readonly="readonly" class="form-control">
+                                        <option value=0>成品</option>
+                                        <option value=1>面积</option>
+                                        <option value=2>长度(长边)</option>
+                                        <option value=3>长度(宽)</option>
+                                        <option value=4>长度(高)</option>
+                                        <option value=5>周长</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>项目单位信息</h4>
+                        </div>
+                        <div class="card-body">
+                            <form >
+                                <div class="form-group form-inline">
+                                    <label for="amount">宽×高</label>
+                                    <div class="form-inline">
+                                        <input type="text" id="width" readonly="readonly" placeholder="宽" class="form-control col-md-4">
+                                        ×
+                                        <input type="text" id="height" readonly="readonly" placeholder="高" class="form-control col-md-4">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>长度单位</label>
+                                    <select name="length_unit" id="length_unit" readonly="readonly" class="form-control">
+                                        <option value="1">mm</option>
+                                        <option value="10">cm</option>
+                                        <option value="100">m</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="unit">数量单位</label>
+                                    <select name="unit" id="unit" readonly="readonly" class="form-control">
+                                        <option value="1">×1</option>
+                                        <option value="5">×5</option>
+                                        <option value="10">×10</option>
+                                        <option value="20">×20</option>
+                                        <option value="50">×50</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>单价信息</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="product_num">数量</label>
+                                    <input type="number" id="product_num" readonly="readonly" placeholder="数量" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">单价</label>
+                                    <input type="text" id="price" readonly="readonly" placeholder="单价" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">订单金额</label>
+                                    <input type="text" id="amount" readonly="readonly" placeholder="订单金额" class="form-control">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>交易金额</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="pre_pay">已付金额</label>
+                                    <input type="text" id="pre_pay" readonly="readonly" placeholder="预付款" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="favour">优惠金额</label>
+                                    <input type="text" id="favour" readonly="readonly" placeholder="优惠金额" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="settlement">支付方式</label>
+                                    <select name="settlement" id="settlement" readonly="readonly" class="form-control">
+                                        <option value="现金" selected>现金</option>
+                                        <option value="微信">微信</option>
+                                        <option value="支付宝">支付宝</option>
+                                        <option value="银行卡">银行卡</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>客户信息</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="customer">订货单位</label>
+                                    <select name="customer" id="customer" readonly="readonly" class="form-control">
+                                        <option value="个体" selected>个体</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact">联系人</label>
+                                    <input type="text" id="contact" readonly="readonly" placeholder="联系人" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">电话</label>
+                                    <input type="text" id="number" readonly="readonly" placeholder="电话号码" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">地址</label>
+                                    <input type="text" id="address" readonly="readonly"  placeholder="地址" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="deliver_type">送货方式</label>
+                                    <select name="deliver_type" id="deliver_type" readonly="readonly" class="form-control">
+                                        <option value="0" >送货</option>
+                                        <option value="1" >自提</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>人员安排</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="clerk">业务员</label>
+                                    <select name="clerk" id="clerk" readonly="readonly" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="designer">设计员</label>
+                                    <select name="designer" id="designer" readonly="readonly" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tracker">跟单员</label>
+                                    <select name="tracker" id="tracker" readonly="readonly" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="source">业务来源</label>
+                                    <select name="source" id="source" readonly="readonly" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="writer">开单员</label>
+                                    <select name="writer" id="writer" readonly="readonly" class="form-control">
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>送货日期</h4>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label for="book_date">下单时间</label>
+                                    <input id="book_date" readonly="readonly" type="text" placeholder="下单时间" class="mr-3 form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="deliver_date">送货时间</label>
+                                    <input id="deliver_date" readonly="readonly" type="text" placeholder="送货时间" class="mr-3 form-control form-control">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>备注</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="remark">摘要</label>
+                                    <input type="text" id="remark" readonly="readonly" placeholder="摘要" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">备注</label>
+                                    <input type="text" id="comment" readonly="readonly" placeholder="备注" class="form-control">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container-fluid">
+
+        </div>
+    </footer>
+</div>
+<!-- JavaScript files-->
+<script src="__STATIC__/vendor/jquery/jquery.min.js"></script>
+<script src="__STATIC__/vendor/popper.js/umd/popper.min.js"> </script>
+<script src="__STATIC__/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="__STATIC__/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+<script src="__STATIC__/vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="__STATIC__/vendor/chart.js/Chart.min.js"></script>
+<script src="__STATIC__/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="__STATIC__/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="__STATIC__/js/charts-home.js"></script>
+<!-- Main File-->
+<script src="__STATIC__/js/front.js"></script>
 </body>
 </html>
+
+<script>
+
+    function getQueryString(name)
+    {
+        const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        const r = window.location.search.substr(1).match(reg);
+        if(r!=null)return unescape(r[2]);
+        else {
+            const urls = window.location.href.split('/');
+            let i = 0, iLoop = urls.length;
+            for (; i<iLoop; i++) {
+                if (urls[i] === name) {
+                    return urls[i+1].split('.')[0];
+                }
+            }
+        }
+        return null;
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "__INDEX__/category/getAllCategory",
+            type: "get",
+            dataType: "json",
+            data: {},
+            success: function (data) {
+                if (data.status == 0) {
+                    const category_list = data.data;
+                    for (let i = 0; i < category_list.length; i++) {
+                        const option = "<option>" + category_list[i]['name'] + "</option>";
+                        $("#category").append(option);
+                    }
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+        $.ajax({
+            url: "__INDEX__/customer/getCustomer",
+            type: "get",
+            dataType: "json",
+            data: {},
+            success: function (data) {
+                if (data.status == 0) {
+                    const customer_list = data.data;
+                    for (let i = 0; i < customer_list.length; i++) {
+                        const option = "<option>" + customer_list[i]['name'] + "</option>";
+                        $("#customer").append(option);
+                    }
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+        $.ajax({
+            url: "__INDEX__/user/getAllEmployee",
+            type: "get",
+            dataType: "json",
+            data: {},
+            success: function (data) {
+                if (data.status == 0) {
+                    const customer_list = data.data;
+                    for (let i = 0; i < customer_list.length; i++) {
+                        const option = "<option>" + customer_list[i]['name'] + "</option>";
+                        $("#clerk").append(option);
+                        $("#designer").append(option);
+                        $("#tracker").append(option);
+                        $("#source").append(option);
+                        $("#writer").append(option);
+                    }
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+        $.ajax({
+            url: "__INDEX__/bill/getSpecificBill",
+            type: "get",
+            dataType: "json",
+            data: {
+                'id': getQueryString('id')
+            },
+            success: function (data) {
+                if (data.status == 0) {
+                    const returnData = data.data;
+                    $("#sno").val(returnData['sno']);
+                    $("#contract").val(returnData['contract']);
+                    $("#bill_type").val(returnData['bill_type']);
+                    $("#price_unit").val(returnData['price_unit']);
+                    $("#width").val(returnData['width']);
+                    $("#height").val(returnData['height']);
+                    $("#length_unit").val(returnData['length_unit']);
+                    $("#product_num").val(returnData['product_num']);
+                    $("#price").val(returnData['price']);
+                    $("#amount").val(returnData['amount']);
+                    $("#pre_pay").val(returnData['pay']);
+                    $("#favour").val(returnData['favour']);
+                    $("#settlement").val(returnData['settlement']);
+                    $("#customer").val(returnData['customer']);
+                    $("#contact").val(returnData['contact']);
+                    $("#number").val(returnData['number']);
+                    $("#address").val(returnData['address']);
+                    $("#deliver_type").val(returnData['deliver_type']);
+                    $("#clerk").val(returnData['clerk']);
+                    $("#designer").val(returnData['designer']);
+                    $("#tracker").val(returnData['tracker']);
+                    $("#source").val(returnData['source']);
+                    $("#writer").val(returnData['writer']);
+                    $("#comment").val(returnData['comment']);
+                    $("#remark").val(returnData['remark']);
+                    $("#book_date").val(returnData['book_date']);
+                    $("#deliver_date").val(returnData['deliver_date']);
+                    $("#day").val(returnData['deliver_date'].substring(8, 10));
+                    $.ajax({
+                        url: "__INDEX__/category/getProduct",
+                        type: "get",
+                        dataType: "json",
+                        data: {
+                            'id': returnData['product']
+                        },
+                        success: function (innerData) {
+                            $("#category").val(innerData.data['category']);
+                            const option = "<option value='"+innerData.data['id']+"'>" + innerData.data['product'] + "</option>";
+                            $("#product").html(option);
+                        }
+                    })
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    });
+
+
+</script>
