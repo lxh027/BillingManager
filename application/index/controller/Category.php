@@ -11,6 +11,16 @@ class Category extends Base
 {
 
     /*
+     * 获取项目
+     */
+    public function getProduct() {
+        $productModel = new ProductModel();
+        $id = input('get.id');
+        $resp = $productModel->getSpecificProduct($id);
+        return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+    }
+
+    /*
      * 获取所有分类
      */
     public function getAllCategory() {

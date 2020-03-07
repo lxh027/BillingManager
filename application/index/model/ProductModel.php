@@ -61,6 +61,21 @@ class ProductModel extends Model
     }
 
     /**
+     * @usage 获取项目
+     * @param int id
+     * @return array
+     */
+    public function getSpecificProduct($id) {
+        try {
+            $where = ['id' => $id];
+            $result = $this->where($where)->find();
+            return ['code' => CODE_SUCCESS, 'msg' => '查询成功', 'data' => $result];
+        } catch(DbException $e) {
+            return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
+        }
+    }
+
+    /**
      * @usage 删除项目
      * @param string id
      * @return array

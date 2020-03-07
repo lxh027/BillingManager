@@ -84,7 +84,7 @@ class CustomerModel extends Model
             $where = ['id' => $id];
             $result = $this->where($where)->find();
             if (!$result) {
-                return ['code' => CODE_ERROR, 'msg' => '订单号不存在', 'data' => $result];
+                return ['code' => CODE_ERROR, 'msg' => '客户不存在', 'data' => $result];
             } else {
                 $this->where($where)->update($data);
                 return ['code' => CODE_SUCCESS, 'msg' => '更新成功', 'data' => []];

@@ -189,8 +189,8 @@
                        returnData[i]['sno'] = returnData[i]['sno']+"<br>"+returnData[i]['settlement'];
                        returnData[i]['deliver_date'] = returnData[i]['deliver_date']+"<br>"+(returnData[i]['deliver_type']==0?"送货":"自提");
 
-                       const edit_op = "<a href='editBill?id="+returnData[i]['id']+"' target='_self'>编辑</a>";
-                       const gather_op = "<a href='__INDEX__/bill/receive?id="+returnData[i]['id']+"' target='_self'>收款</a>";
+                       const edit_op = "<a href='edit?id="+returnData[i]['id']+"' target='_self'>编辑</a>";
+                       const gather_op = "<a href='receive?id="+returnData[i]['id']+"' target='_self'>收款</a>";
                        const check_op = "<a href='checkBill?id="+returnData[i]['id']+"' target='_self'>查看</a>";
                        const deliver_op = "<a href='deliverProduct?id="+returnData[i]['id']+"' target='_self'>送货</a>";
                        const status_money = returnData[i]['pay']+returnData[i]['favour']==returnData[i]['amount']?"已结清":"未结清";

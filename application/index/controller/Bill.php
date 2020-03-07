@@ -9,6 +9,22 @@ class Bill extends Base
 {
 
     /*
+     * 更新订单
+     */
+    public function updateBill()
+    {
+        $billModel = new BillModel();
+        $id = input('post.id');
+        $data = input('post.data');
+        $data['amount'] = round($data['amount'], 2);
+        $data['favour'] = round($data['favour'], 2);
+        $data['price'] = round($data['price'], 2);
+        $data['pay'] = round($data['pay'], 2);
+        $resp = $billModel->updateBill($id, $data);
+        return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+    }
+
+    /*
      * 收款
      */
     public function receiveMoney()
@@ -40,6 +56,18 @@ class Bill extends Base
         $id = input("get.id");
         $resp = $billModel->deliverProduct($id);
         $this->redirect('index/bill/index');
+    }
+
+    /*
+     * 获取特定订单
+     */
+    public function getSpecificBill()
+    {
+        $billModel = new BillModel();
+        $id = input('get.id');
+        $where = ['id' => $id];
+        $resp = $billModel->getSpecificBill($where);
+        return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
     }
 
     /*
