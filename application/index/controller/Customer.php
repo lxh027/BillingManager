@@ -9,6 +9,18 @@ class Customer extends Base
 {
 
     /*
+     * 更改客户
+     */
+    public function updateCustomer()
+    {
+        $customerModel = new CustomerModel();
+        $id = input('post.id');
+        $data = input('post.data');
+        $resp = $customerModel->updateCustomer($id, $data);
+        return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+    }
+
+    /*
      * 删除用户
      */
     public function deleteCustomer()
@@ -42,6 +54,17 @@ class Customer extends Base
     }
 
     /*
+     * 获取用户 ID
+     */
+    public function getSpecificCustomerByID()
+    {
+        $customerModel = new CustomerModel();
+        $id = input('get.id');
+        $resp = $customerModel->getCustomerByID($id);
+        return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+    }
+
+    /*
      * 获取用户
      */
     public function getSpecificCustomer()
@@ -68,6 +91,11 @@ class Customer extends Base
         ];
         $resp = $customerModel->addCustomer($insertData);
         return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+    }
+
+    public function edit()
+    {
+        return $this->fetch();
     }
 
     public function index()

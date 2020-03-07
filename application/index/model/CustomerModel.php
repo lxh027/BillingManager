@@ -14,7 +14,8 @@ class CustomerModel extends Model
      * @param array data
      * @return array
      */
-    public function addCustomer($data) {
+    public function addCustomer($data)
+    {
         try {
             $where = [
                 'name' => $data['name']
@@ -26,7 +27,7 @@ class CustomerModel extends Model
                 $this->insert($data);
                 return ['code' => CODE_SUCCESS, 'msg' => '添加成功', 'data' => []];
             }
-        } catch(DbException $e) {
+        } catch (DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
         }
     }
@@ -36,7 +37,8 @@ class CustomerModel extends Model
      * @param string name
      * @return array
      */
-    public function deleteCustomer($name) {
+    public function deleteCustomer($name)
+    {
         try {
             $where = [
                 'name' => $name
@@ -48,7 +50,7 @@ class CustomerModel extends Model
                 $this->where($where)->delete();
                 return ['code' => CODE_SUCCESS, 'msg' => '删除成功', 'data' => []];
             }
-        } catch(DbException $e) {
+        } catch (DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
         } catch (\Exception $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
@@ -60,10 +62,33 @@ class CustomerModel extends Model
      * @param void
      * @return array
      */
-    public function getAllCustomer() {
+    public function getAllCustomer()
+    {
         try {
             $result = $this->select();
             return ['code' => CODE_SUCCESS, 'msg' => '查询成功', 'data' => $result];
+        } catch (DbException $e) {
+            return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * @usage 更新用户
+     * @param int id
+     * @param array data
+     * @return array
+     */
+    public function updateCustomer($id, $data)
+    {
+        try {
+            $where = ['id' => $id];
+            $result = $this->where($where)->find();
+            if (!$result) {
+                return ['code' => CODE_ERROR, 'msg' => '订单号不存在', 'data' => $result];
+            } else {
+                $this->where($where)->update($data);
+                return ['code' => CODE_SUCCESS, 'msg' => '更新成功', 'data' => []];
+            }
         } catch(DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
         }
@@ -77,6 +102,24 @@ class CustomerModel extends Model
     public function getCustomerByName($name) {
         try {
             $result = $this->where('name', 'like', '%'.$name.'%')->select();
+            return ['code' => CODE_SUCCESS, 'msg' => '查询成功', 'data' => $result];
+        } catch(DbException $e) {
+            return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
+        }
+    }
+
+
+    /**
+     * @usage 获得用户
+     * @param int id
+     * @return array
+     */
+    public function getCustomerByID($id) {
+        try {
+            $where = [
+                'id' => $id,
+            ];
+            $result = $this->where($where)->find();
             return ['code' => CODE_SUCCESS, 'msg' => '查询成功', 'data' => $result];
         } catch(DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
