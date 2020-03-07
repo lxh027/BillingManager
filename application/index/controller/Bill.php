@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 
 use app\index\model\BillModel;
+use think\db\Where;
 
 class Bill extends Base
 {
@@ -67,6 +68,22 @@ class Bill extends Base
         $id = input('get.id');
         $where = ['id' => $id];
         $resp = $billModel->getSpecificBill($where);
+        return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+    }
+
+    public function searchBill()
+    {
+        $billModel = new BillModel();
+        $req = input('post.');
+        $where = [
+            ['customer', 'like', '%'.$req['customer'].'%'],
+            ['clerk', 'like', '%'.$req['clerk'].'%'],
+            ['designer', 'like', '%'.$req['designer'].'%'],
+            ['tracker', 'like', '%'.$req['tracker'].'%'],
+            ['book_date', 'between time', [strtotime($req['book_date_begin']), strtotime($req['book_date_end'])]],
+            ['deliver_date', 'between time', [strtotime($req['deliver_date_begin']), strtotime($req['deliver_date_end'])]]
+        ];
+        $resp = $billModel->getBill($where);
         return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
     }
 

@@ -106,6 +106,8 @@ class BillModel extends Model
             return ['code' => CODE_SUCCESS, 'msg' => '查询成功', 'data' => $result];
         } catch(DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
+        } catch (\Exception $e) {
+            return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
         }
     }
 
