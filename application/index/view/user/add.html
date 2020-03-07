@@ -95,6 +95,50 @@
         </nav>
     </header>
 
+    <section class="forms">
+        <div class="container-fluid">
+            <header>
+                <h1 class="h3 display">添加员工</h1>
+            </header>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>员工信息</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="account">手机号</label>
+                                    <input type="text" id="account" placeholder="手机号" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">姓名</label>
+                                    <input type="text" id="name" placeholder="姓名" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">密码</label>
+                                    <input type="password" id="password" placeholder="密码" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="authority">权限</label>
+                                    <select name="authority" id="authority" class="form-control">
+                                        <option value=0 selected>普通</option>
+                                        <option value=1 >管理员</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <div class="form-group row">
+                                <div class="col-sm-10 offset-sm-5">
+                                    <button id="add" class="btn btn-primary col-md-1">添加</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="main-footer">
         <div class="container-fluid">
@@ -119,5 +163,26 @@
 
 <script>
 
+    $("#add").click(function () {
+        $.ajax({
+            url: "__INDEX__/user/addEmployee",
+            type: "post",
+            dataType: "json",
+            data: {
+                'name': $("#name").val(),
+                'account': $("#account").val(),
+                'password': $("#password").val(),
+                'authority': $("#authority").val(),
+            },
+            success: function (data) {
+                if (data.status == 0) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    });
 
 </script>
