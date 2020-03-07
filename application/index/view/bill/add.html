@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="__STATIC__/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="__STATIC__/img/favicon.ico">
+    <link href="__STATIC__/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -330,18 +332,15 @@
                             <h4>送货日期</h4>
                         </div>
                         <div class="card-body">
-                            <form class="form-inline">
+                            <form>
                                 <div class="form-group">
-                                    <label for="year" class="sr-only">年</label>
-                                    <input id="year" type="number" placeholder="年" class="mr-3 form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="month" class="sr-only">月</label>
-                                    <input id="month" type="number" placeholder="月" class="mr-3 form-control form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="day" class="sr-only">日</label>
-                                    <input id="day" type="number" placeholder="日" class="mr-3 form-control form-control">
+                                    <label for="dtp_input2">送货时间</label>
+                                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <input class="form-control" id="deliver_date" size="16" type="text" value="" readonly>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                    <input type="hidden" id="dtp_input2" value="" /><br/>
                                 </div>
                             </form>
                         </div>
@@ -391,6 +390,9 @@
 <script src="__STATIC__/vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="__STATIC__/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="__STATIC__/js/charts-home.js"></script>
+<script type="text/javascript" src="__STATIC__/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="__STATIC__/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
 <!-- Main File-->
 <script src="__STATIC__/js/front.js"></script>
 </body>
@@ -522,7 +524,7 @@
                     for (let i = 0; i < product_list.length; i++) {
                         const option = "<option value='"+product_list[i]['id']+"'>" + product_list[i]['product'] + "</option>";
                         $("#product").html(option);
-                    }f
+                    }
                 } else {
                     alert(data.message);
                 }
@@ -562,15 +564,27 @@
                 "writer": $("#writer").val(),
                 "remark": $("#remark").val(),
                 "comment": $("#comment").val(),
-                "deliver_date": $("#year").val()+"-"+$("#month").val()+"-"+$("#day").val()
+                "deliver_date": $("#deliver_date").val()
             },
             success: function (data) {
                 if (data.status == 0) {
                     alert(data.message);
+                    location.reload();
                 } else {
                     alert(data.message);
                 }
             }
         });
+    });
+
+    $('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
     });
 </script>
