@@ -103,7 +103,7 @@
                 <h1 class="h3">添加订单</h1>
             </header>
             <div class="row">
-                <div class="col-lg-12">
+                <!--<div class="col-lg-12">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
                             <h4>单号信息</h4>
@@ -131,127 +131,29 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
+                </div>-->
+                <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h4>项目</h4>
-                        </div>
                         <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="category">项目分类</label>
-                                    <select name="category" id="category" class="form-control">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="product">项目</label>
-                                    <select name="product" id="product" class="form-control">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="price_unit">计价方式</label>
-                                    <select name="price_unit" id="price_unit" class="form-control">
-                                        <option value=0>成品</option>
-                                        <option value=1>面积</option>
-                                        <option value=2>长度(长边)</option>
-                                        <option value=3>长度(宽)</option>
-                                        <option value=4>长度(高)</option>
-                                        <option value=5>周长</option>
-                                    </select>
-                                </div>
-                            </form>
+                            <label for="bill_num">订单数量</label>
+                            <select name="bill_num" id="bill_num" class="form-control">
+                                <option value=0>0</option>
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                                <option value=6>6</option>
+                                <option value=7>7</option>
+                                <option value=8>8</option>
+                                <option value=9>9</option>
+                                <option value=10>10</option>s
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h4>项目单位信息</h4>
-                        </div>
-                        <div class="card-body">
-                            <form >
-                                <div class="form-group form-inline">
-                                    <label for="amount">宽×高</label>
-                                    <div class="form-inline">
-                                        <input type="text" id="width" placeholder="宽" class="form-control col-md-4">
-                                        ×
-                                        <input type="text" id="height" placeholder="高" class="form-control col-md-4">
-                                    </div>
+                <div id="bill_info" class="row">
 
-                                </div>
-                                <div class="form-group">
-                                    <label>长度单位</label>
-                                    <select name="length_unit" id="length_unit" class="form-control">
-                                        <option value="1">mm</option>
-                                        <option value="10">cm</option>
-                                        <option value="100">m</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="unit">数量单位</label>
-                                    <select name="unit" id="unit" class="form-control">
-                                        <option value="1">×1</option>
-                                        <option value="5">×5</option>
-                                        <option value="10">×10</option>
-                                        <option value="20">×20</option>
-                                        <option value="50">×50</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h4>单价信息</h4>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="product_num">数量</label>
-                                    <input type="number" id="product_num" placeholder="数量" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="price">单价</label>
-                                    <input type="text" id="price" placeholder="单价" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="amount">订单金额</label>
-                                    <input type="text" id="amount" readonly="readonly" placeholder="订单金额" class="form-control">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h4>交易金额</h4>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="pre_pay">已付金额</label>
-                                    <input type="text" id="pre_pay" placeholder="预付款" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="favour">优惠金额</label>
-                                    <input type="text" id="favour" placeholder="优惠金额" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="settlement">支付方式</label>
-                                    <select name="settlement" id="settlement" class="form-control">
-                                        <option value="现金" selected>现金</option>
-                                        <option value="微信">微信</option>
-                                        <option value="支付宝">支付宝</option>
-                                        <option value="银行卡">银行卡</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="card">
@@ -262,9 +164,9 @@
                             <form>
                                 <div class="form-group">
                                     <label for="customer">订货单位</label>
-                                    <select name="customer" id="customer" class="form-control">
-                                        <option value="个体" selected>个体</option>
-                                    </select>
+                                    <input list="customer_list" id="customer" type="text" class="form-control">
+                                    <datalist id="customer_list">
+                                    </datalist>
                                 </div>
                                 <div class="form-group">
                                     <label for="contact">联系人</label>
@@ -353,10 +255,10 @@
                         </div>
                         <div class="card-body">
                             <form>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="remark">摘要</label>
                                     <input type="text" id="remark" placeholder="摘要" class="form-control">
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <label for="comment">备注</label>
                                     <input type="text" id="comment" placeholder="备注" class="form-control">
@@ -400,7 +302,7 @@
 
 <script>
     $(document).ready(function () {
-        $.ajax({
+        /*$.ajax({
             url: "__INDEX__/category/getAllCategory",
             type: "get",
             dataType: "json",
@@ -416,7 +318,7 @@
                     alert(data.message);
                 }
             }
-        });
+        });*/
         $.ajax({
             url: "__INDEX__/customer/getCustomer",
             type: "get",
@@ -427,7 +329,7 @@
                     const customer_list = data.data;
                     for (let i = 0; i < customer_list.length; i++) {
                         const option = "<option>" + customer_list[i]['name'] + "</option>";
-                        $("#customer").append(option);
+                        $("#customer_list").append(option);
                     }
                 } else {
                     alert(data.message);
@@ -479,38 +381,7 @@
         });
     });
 
-    $("#amount").click(function () {
-
-        const price_unit = $("#price_unit").val();
-        const width = $("#width").val();
-        const height = $("#height").val();
-        const rate = $("#length_unit").val();
-        const unit = $("#unit").val();
-        const product_num = $("#product_num").val();
-        const price = $("#price").val();
-        let tot_price = 0;
-
-        function max(a, b) {
-            if (a>b) return a;
-            else return b;
-        }
-        if (price_unit == 0) {
-            tot_price = (unit*product_num)*price;
-        } else if (price_unit == 1) {
-            tot_price = (width*height)*price*(unit*product_num);
-        } else if (price_unit == 2) {
-            tot_price = (max(width, height))*price*(unit*product_num);
-        } else if (price_unit == 3) {
-            tot_price = width*price*(unit*product_num);
-        } else if (price_unit == 4) {
-            tot_price = height*price*(unit*product_num);
-        } else if (price_unit == 5) {
-            tot_price = (width+height)*price*(unit*product_num);
-        }
-        $("#amount").val(tot_price);
-    });
-
-    $("#category").change(function () {
+    /*$("#category").change(function () {
         $.ajax({
             url: "__INDEX__/category/getProductByCategory",
             type: "get",
@@ -532,51 +403,211 @@
                 }
             }
         });
-    });
+    });*/
+
+    function add_bill(index) {
+        const price_unit = $("#price_unit"+index).val();
+        const width = $("#width"+index).val();
+        const height = $("#height"+index).val();
+        const rate = $("#length_unit"+index).val();
+        const unit = $("#unit"+index).val();
+        const product_num = $("#product_num"+index).val();
+        const price = $("#price"+index).val();
+        let tot_price = 0;
+        function max(a, b) {
+            if (a>b) return a;
+            else return b;
+        }
+        if (price_unit == 0) {
+            tot_price = (unit*product_num)*price;
+        } else if (price_unit == 1) {
+            tot_price = (width*height)*price*(unit*product_num);
+        } else if (price_unit == 2) {
+            tot_price = (max(width, height))*price*(unit*product_num);
+        } else if (price_unit == 3) {
+            tot_price = width*price*(unit*product_num);
+        } else if (price_unit == 4) {
+            tot_price = height*price*(unit*product_num);
+        } else if (price_unit == 5) {
+            tot_price = (width+height)*price*(unit*product_num);
+        }
+        $("#amount"+index).val(tot_price);
+    }
 
     $("#add_bill").click(function () {
-        $.ajax({
-            url: "__INDEX__/bill/addBill",
-            type: "post",
-            dataType: "json",
-            data: {
-                "sno": $("#sno").val(),
-                "contract": $("#contract").val(),
-                "bill_type": $("#bill_type").val(),
-                "product": $("#product").val(),
-                "price_unit": $("#price_unit").val(),
-                "width": $("#width").val(),
-                "height": $("#height").val(),
-                "length_unit": $("#length_unit").val(),
-                "product_num": $("#product_num").val()*$("#unit").val(),
-                "price": $("#price").val(),
-                "amount": $("#amount").val(),
-                "pay": $("#pre_pay").val(),
-                "favour": $("#favour").val(),
-                "settlement": $("#settlement").val(),
-                "customer": $("#customer").val(),
-                "contact": $("#contact").val(),
-                "number": $("#number").val(),
-                "address": $("#address").val(),
-                "deliver_type": $("#deliver_type").val(),
-                "clerk": $("#clerk").val(),
-                "designer": $("#designer").val(),
-                "tracker": $("#tracker").val(),
-                "source": $("#source").val(),
-                "writer": $("#writer").val(),
-                "remark": $("#remark").val(),
-                "comment": $("#comment").val(),
-                "deliver_date": $("#deliver_date").val()
-            },
-            success: function (data) {
-                if (data.status == 0) {
-                    alert(data.message);
-                    location.reload();
-                } else {
-                    alert(data.message);
+        const bill_num = $("#bill_num").val();
+        for (let i=1; i<=bill_num; i++) {
+            console.log($("#width"+i).val());
+            $.ajax({
+                url: "__INDEX__/bill/addBill",
+                type: "post",
+                dataType: "json",
+                data: {
+                    //"sno": $("#sno").val(),
+                    //"contract": $("#contract").val(),
+                    //"bill_type": $("#bill_type").val(),
+                    "product": $("#product"+i).val(),
+                    "price_unit": $("#price_unit"+i).val(),
+                    "width": $("#width"+i).val(),
+                    "height": $("#height"+i).val(),
+                    "length_unit": $("#length_unit"+i).val(),
+                    "product_num": $("#product_num"+i).val()*$("#unit"+i).val(),
+                    "price": $("#price"+i).val(),
+                    "amount": $("#amount"+i).val(),
+                    "pay": $("#pre_pay"+i).val(),
+                    "favour": $("#favour"+i).val(),
+                    "settlement": $("#settlement"+i).val(),
+                    "customer": $("#customer").val(),
+                    "contact": $("#contact").val(),
+                    "number": $("#number").val(),
+                    "address": $("#address").val(),
+                    "deliver_type": $("#deliver_type").val(),
+                    "clerk": $("#clerk").val(),
+                    "designer": $("#designer").val(),
+                    "tracker": $("#tracker").val(),
+                    "source": $("#source").val(),
+                    "writer": $("#writer").val(),
+                    "remark": $("#remark").val(),
+                    "comment": $("#comment").val(),
+                    "deliver_date": $("#deliver_date").val()
                 }
-            }
-        });
+            });
+        }
+        alert("添加成功");
+        $("#bill_num").val(0);
+    });
+
+    $("#bill_num").change(function () {
+        const bill_num = $("#bill_num").val();
+        let html = "";
+        for (let i=1; i<=bill_num; i++) {
+            const div = "<div class=\"col-lg-3\">\n" +
+                "                        <div class=\"card\">\n" +
+                "                            <div class=\"card-header d-flex align-items-center\">\n" +
+                "                                <h4>项目"+i+"</h4>\n" +
+                "                                <input type='hidden' id='id' value="+i+">\n" +
+                "                            </div>\n" +
+                "                            <div class=\"card-body\">\n" +
+                "                                <form>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"product"+i+"\">项目类型</label>\n" +
+                "                                        <input type=\"text\" id=\"product"+i+"\" class=\"form-control\">\n" +
+                "                                        <!--<select name=\"category\" id=\"category\" class=\"form-control\">\n" +
+                "                                        </select>-->\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"remark"+i+"\">摘要</label>\n" +
+                "                                        <input type=\"text\" id=\"remark"+i+"\" class=\"form-control\">\n" +
+                "                                        <!--<select name=\"product\" id=\"product\" class=\"form-control\">\n" +
+                "                                        </select>-->\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"price_unit"+i+"\">计价方式</label>\n" +
+                "                                        <select name=\"price_unit\" id=\"price_unit"+i+"\" class=\"form-control\">\n" +
+                "                                            <option value=0>成品</option>\n" +
+                "                                            <option value=1>面积</option>\n" +
+                "                                            <option value=2>长度(长边)</option>\n" +
+                "                                            <option value=3>长度(宽)</option>\n" +
+                "                                            <option value=4>长度(高)</option>\n" +
+                "                                            <option value=5>周长</option>\n" +
+                "                                        </select>\n" +
+                "                                    </div>\n" +
+                "                                </form>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"col-lg-3\">\n" +
+                "                        <div class=\"card\">\n" +
+                "                            <div class=\"card-header d-flex align-items-center\">\n" +
+                "                                <h4>项目单位信息</h4>\n" +
+                "                            </div>\n" +
+                "                            <div class=\"card-body\">\n" +
+                "                                <form >\n" +
+                "                                    <div class=\"form-group form-inline\">\n" +
+                "                                        <label for=\"amount"+i+"\">宽×高</label>\n" +
+                "                                        <div class=\"form-inline\">\n" +
+                "                                            <input type=\"text\" id=\"width"+i+"\" placeholder=\"宽\" class=\"form-control col-md-4\">\n" +
+                "                                            ×\n" +
+                "                                            <input type=\"text\" id=\"height"+i+"\" placeholder=\"高\" class=\"form-control col-md-4\">\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label>长度单位</label>\n" +
+                "                                        <select name=\"length_unit\" id=\"length_unit"+i+"\" class=\"form-control\">\n" +
+                "                                            <option value=\"1\">mm</option>\n" +
+                "                                            <option value=\"10\">cm</option>\n" +
+                "                                            <option value=\"100\">m</option>\n" +
+                "                                        </select>\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"unit"+i+"\">数量单位</label>\n" +
+                "                                        <select name=\"unit\" id=\"unit"+i+"\" class=\"form-control\">\n" +
+                "                                            <option value=\"1\">×1</option>\n" +
+                "                                            <option value=\"5\">×5</option>\n" +
+                "                                            <option value=\"10\">×10</option>\n" +
+                "                                            <option value=\"20\">×20</option>\n" +
+                "                                            <option value=\"50\">×50</option>\n" +
+                "                                        </select>\n" +
+                "                                    </div>\n" +
+                "                                </form>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"col-lg-3\">\n" +
+                "                        <div class=\"card\">\n" +
+                "                            <div class=\"card-header d-flex align-items-center\">\n" +
+                "                                <h4>单价信息</h4>\n" +
+                "                            </div>\n" +
+                "                            <div class=\"card-body\">\n" +
+                "                                <form>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"product_num"+i+"\">数量</label>\n" +
+                "                                        <input type=\"number\" id=\"product_num"+i+"\" placeholder=\"数量\" class=\"form-control\">\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"price"+i+"\">单价</label>\n" +
+                "                                        <input type=\"text\" id=\"price"+i+"\" placeholder=\"单价\" class=\"form-control\">\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"amount"+i+"\">订单金额</label>\n" +
+                "                                        <input type=\"text\" name=\"amount\" id=\"amount"+i+"\" onclick='add_bill("+i+")' readonly=\"readonly\" placeholder=\"订单金额\" class=\"form-control\">\n" +
+                "                                    </div>\n" +
+                "                                </form>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"col-lg-3\">\n" +
+                "                        <div class=\"card\">\n" +
+                "                            <div class=\"card-header d-flex align-items-center\">\n" +
+                "                                <h4>交易金额</h4>\n" +
+                "                            </div>\n" +
+                "                            <div class=\"card-body\">\n" +
+                "                                <form>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"pre_pay"+i+"\">已付金额</label>\n" +
+                "                                        <input type=\"text\" id=\"pre_pay"+i+"\" placeholder=\"预付款\" class=\"form-control\">\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"favour"+i+"\">优惠金额</label>\n" +
+                "                                        <input type=\"text\" id=\"favour"+i+"\" placeholder=\"优惠金额\" class=\"form-control\">\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"form-group\">\n" +
+                "                                        <label for=\"settlement"+i+"\">支付方式</label>\n" +
+                "                                        <select name=\"settlement\" id=\"settlement"+i+"\" class=\"form-control\">\n" +
+                "                                            <option value=\"现金\" selected>现金</option>\n" +
+                "                                            <option value=\"微信\">微信</option>\n" +
+                "                                            <option value=\"支付宝\">支付宝</option>\n" +
+                "                                            <option value=\"银行卡\">银行卡</option>\n" +
+                "                                        </select>\n" +
+                "                                    </div>\n" +
+                "                                </form>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                    </div>";
+            html += div;
+        }
+        $("#bill_info").html(html);
     });
 
     $('.form_date').datetimepicker({

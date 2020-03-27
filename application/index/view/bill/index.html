@@ -246,7 +246,7 @@
                                         +"优惠："+returnData[i]['favour']+"<br>"
                                         +"已收："+returnData[i]['pay']+"<br>"
                                         +"欠款："+(returnData[i]['amount']-returnData[i]['pay']-returnData[i]['favour']);
-                       returnData[i]['sno'] = returnData[i]['sno']+"<br>"+returnData[i]['settlement'];
+                       returnData[i]['product'] = returnData[i]['product']+"<br>"+returnData[i]['settlement'];
                        returnData[i]['deliver_date'] = returnData[i]['deliver_date']+"<br>"+(returnData[i]['deliver_type']==0?"送货":"自提");
 
                        const edit_op = "<a href='edit?id="+returnData[i]['id']+"' target='_self'>编辑</a>";
@@ -256,7 +256,7 @@
                        const status_money = returnData[i]['pay']+returnData[i]['favour']==returnData[i]['amount']?"已结清":"未结清";
                        const status_deliver = returnData[i]['deliver_status']==0?"未送货":"已送货";
 
-                       const option = table_str_1+returnData[i]['sno']
+                       const option = table_str_1+returnData[i]['product']
                            +table_str_2+returnData[i]['book_date']
                            +table_str_3+returnData[i]['deliver_date']
                            +table_str_3+returnData[i]['customer']
@@ -303,7 +303,7 @@
                             +"优惠："+returnData[i]['favour']+"<br>"
                             +"已收："+returnData[i]['pay']+"<br>"
                             +"欠款："+(returnData[i]['amount']-returnData[i]['pay']-returnData[i]['favour']);
-                        returnData[i]['sno'] = returnData[i]['sno']+"<br>"+returnData[i]['settlement'];
+                        returnData[i]['product'] = returnData[i]['product']+"<br>"+returnData[i]['settlement'];
                         returnData[i]['deliver_date'] = returnData[i]['deliver_date']+"<br>"+(returnData[i]['deliver_type']==0?"送货":"自提");
 
                         const edit_op = "<a href='edit?id="+returnData[i]['id']+"' target='_self'>编辑</a>";
@@ -313,7 +313,7 @@
                         const status_money = returnData[i]['pay']+returnData[i]['favour']==returnData[i]['amount']?"已结清":"未结清";
                         const status_deliver = returnData[i]['deliver_status']==0?"未送货":"已送货";
 
-                        const option = table_str_1+returnData[i]['sno']
+                        const option = table_str_1+returnData[i]['product']
                             +table_str_2+returnData[i]['book_date']
                             +table_str_3+returnData[i]['deliver_date']
                             +table_str_3+returnData[i]['customer']

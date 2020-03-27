@@ -118,14 +118,16 @@ class BillModel extends Model
      */
     public function addBill($data) {
         try {
-            $where = ['sno' => $data['sno']];
+            /*$where = ['sno' => $data['sno']];
             $result = $this->where($where)->find();
             if ($result) {
                 return ['code' => CODE_ERROR, 'msg' => '订单号已存在', 'data' => $result];
             } else {
                 $this->insertGetId($data);
                 return ['code' => CODE_SUCCESS, 'msg' => '添加成功', 'data' => []];
-            }
+            }*/
+            $this->insertGetId($data);
+            return ['code' => CODE_SUCCESS, 'msg' => '添加成功', 'data' => []];
         } catch(DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
         } catch (\Exception $e) {
