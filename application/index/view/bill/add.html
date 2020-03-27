@@ -437,7 +437,6 @@
     $("#add_bill").click(function () {
         const bill_num = $("#bill_num").val();
         for (let i=1; i<=bill_num; i++) {
-            console.log($("#width"+i).val());
             $.ajax({
                 url: "__INDEX__/bill/addBill",
                 type: "post",
@@ -474,7 +473,6 @@
             });
         }
         alert("添加成功");
-        $("#bill_num").val(0);
     });
 
     $("#bill_num").change(function () {
