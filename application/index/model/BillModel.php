@@ -134,4 +134,25 @@ class BillModel extends Model
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
         }
     }
+    /**
+     * @usage 添加订单
+     * @param array data
+     * @return array
+     */
+    public function deleteBill($data) {
+        try {
+            $where = ['id' => $data['id']];
+            $result = $this->where($where)->find();
+            if (!$result) {
+                return ['code' => CODE_ERROR, 'msg' => '订单号不存在', 'data' => $result];
+            } else {
+                $this->where($where)->delete();
+                return ['code' => CODE_SUCCESS, 'msg' => '删除成功', 'data' => []];
+            }
+        } catch(DbException $e) {
+            return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
+        } catch (\Exception $e) {
+            return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
+        }
+    }
 }

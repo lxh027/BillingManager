@@ -97,6 +97,18 @@ class Bill extends Base
         return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
     }
 
+    /**
+     * @return \think\response\Json
+     */
+    public function deleteBill()
+    {
+        $billModel = new BillModel();
+        $id = input('get.id');
+        $where = ['id' => $id];
+        $resp = $billModel->deleteBill($where);
+        $this->redirect("index/bill/index");
+    }
+
     /*
      * 添加订单
      */

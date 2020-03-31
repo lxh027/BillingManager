@@ -7,6 +7,11 @@ use app\index\model\UserModel;
 class User extends Base
 {
 
+    public function getAuthority()
+    {
+        return apiReturn(0, 'ok', session("authority"), 200);
+    }
+
     public function getAllUser()
     {
         $userModel = new UserModel();

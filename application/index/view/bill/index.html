@@ -226,7 +226,16 @@
 </html>
 
 <script>
-
+    let authority = "";
+    $.ajax({
+        url: "__INDEX__/user/getAuthority",
+        type: "get",
+        dataType: "json",
+        data: {},
+        success: function (data) {
+            authority = data.data;
+        }
+    }) ;
     $(document).ready(function () {
        $.ajax({
            url: "__INDEX__/bill/getAllBill",
@@ -253,6 +262,7 @@
                        const gather_op = "<a href='receive?id="+returnData[i]['id']+"' target='_self'>收款</a>";
                        const check_op = "<a href='check?id="+returnData[i]['id']+"' target='_self'>查看</a>";
                        const deliver_op = "<a href='deliverProduct?id="+returnData[i]['id']+"' target='_self'>送货</a>";
+                       const delete_op = authority == "管理员"?"<a href='deleteBill?id="+returnData[i]['id']+"' target='_self'>删除</a>":"";
                        const status_money = returnData[i]['pay']+returnData[i]['favour']==returnData[i]['amount']?"已结清":"未结清";
                        const status_deliver = returnData[i]['deliver_status']==0?"未送货":"已送货";
 
@@ -264,7 +274,7 @@
                            +table_str_3+money_status
                            +table_str_3+returnData[i]['clerk']+"|"+returnData[i]['designer']+"|"+returnData[i]['tracker']
                            +table_str_3+status_money+"<br>"+status_deliver
-                           +table_str_3+edit_op+"&ensp;"+gather_op+"<br>"+check_op+"&ensp;"+deliver_op+table_str_4;
+                           +table_str_3+edit_op+"&ensp;"+gather_op+"<br>"+check_op+"&ensp;"+deliver_op+"<br>"+delete_op+table_str_4;
                        content += option;
                    }
                    $("#table").html(content);
@@ -310,6 +320,7 @@
                         const gather_op = "<a href='receive?id="+returnData[i]['id']+"' target='_self'>收款</a>";
                         const check_op = "<a href='check?id="+returnData[i]['id']+"' target='_self'>查看</a>";
                         const deliver_op = "<a href='deliverProduct?id="+returnData[i]['id']+"' target='_self'>送货</a>";
+                        const delete_op = authority == "管理员"?"<a href='deleteBill?id="+returnData[i]['id']+"' target='_self'>删除</a>":"";
                         const status_money = returnData[i]['pay']+returnData[i]['favour']==returnData[i]['amount']?"已结清":"未结清";
                         const status_deliver = returnData[i]['deliver_status']==0?"未送货":"已送货";
 
@@ -321,7 +332,7 @@
                             +table_str_3+money_status
                             +table_str_3+returnData[i]['clerk']+"|"+returnData[i]['designer']+"|"+returnData[i]['tracker']
                             +table_str_3+status_money+"<br>"+status_deliver
-                            +table_str_3+edit_op+"&ensp;"+gather_op+"<br>"+check_op+"&ensp;"+deliver_op+table_str_4;
+                            +table_str_3+edit_op+"&ensp;"+gather_op+"<br>"+check_op+"&ensp;"+deliver_op+"<br>"+delete_op+table_str_4;
                         content += option;
                     }
                     $("#table").html(content);
