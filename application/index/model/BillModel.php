@@ -126,8 +126,8 @@ class BillModel extends Model
                 $this->insertGetId($data);
                 return ['code' => CODE_SUCCESS, 'msg' => '添加成功', 'data' => []];
             }*/
-            $this->insertGetId($data);
-            return ['code' => CODE_SUCCESS, 'msg' => '添加成功', 'data' => []];
+            $id = $this->insertGetId($data);
+            return ['code' => CODE_SUCCESS, 'msg' => '添加成功', 'data' => $id];
         } catch(DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
         } catch (\Exception $e) {

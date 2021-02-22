@@ -13,9 +13,11 @@ namespace think;
 
 use think\exception\RouteNotFoundException;
 use think\route\AliasRule;
+use think\route\Dispatch;
 use think\route\dispatch\Url as UrlDispatch;
 use think\route\Domain;
 use think\route\Resource;
+use think\route\Rule;
 use think\route\RuleGroup;
 use think\route\RuleItem;
 
@@ -408,7 +410,7 @@ class Route
             $result = $this->bind[$domain];
         } elseif (isset($name) && isset($this->bind[$name])) {
             $result = $this->bind[$name];
-        } elseif (isset($this->bind['*'])) {
+        } elseif (!empty($subDomain) && isset($this->bind['*'])) {
             $result = $this->bind['*'];
         } else {
             $result = null;

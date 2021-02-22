@@ -255,7 +255,7 @@
                                         +"优惠："+returnData[i]['favour']+"<br>"
                                         +"已收："+returnData[i]['pay']+"<br>"
                                         +"欠款："+(returnData[i]['amount']-returnData[i]['pay']-returnData[i]['favour']);
-                       returnData[i]['product'] = returnData[i]['product']+"<br>"+returnData[i]['settlement'];
+                       returnData[i]['product'] = returnData[i]['sno']+"<br>"+returnData[i]['settlement'];
                        returnData[i]['deliver_date'] = returnData[i]['deliver_date']+"<br>"+(returnData[i]['deliver_type']==0?"送货":"自提");
 
                        const edit_op = "<a href='edit?id="+returnData[i]['id']+"' target='_self'>编辑</a>";
