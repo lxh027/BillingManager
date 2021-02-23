@@ -526,12 +526,21 @@
         });
     });
 
+
+    function delete_bill(i) {
+        let p = item_id.indexOf(i);
+        if (p > -1) {
+            item_id.splice(p, 1);
+        }
+        $(".item"+i).remove();
+    }
+
     $("#add_item").click(function () {
         item_index++;
         item_id.push(item_index);
         let html = "";
         const i = item_index;
-            const div = "<div class=\"col-lg-4\" id='item"+i+"'>\n" +
+            const div = "<div class=\"col-lg-4 item"+i+" \" '>\n" +
                 "                        <div class=\"card\">\n" +
                 "                            <div class=\"card-header d-flex align-items-center\">\n" +
                 "                                <h4>项目"+i+"</h4>\n" +
@@ -566,7 +575,7 @@
                 "                            </div>\n" +
                 "                        </div>\n" +
                 "                    </div>\n" +
-                "                    <div class=\"col-lg-4\">\n" +
+                "                    <div class=\"col-lg-4 item"+i+" \">\n" +
                 "                        <div class=\"card\">\n" +
                 "                            <div class=\"card-header d-flex align-items-center\">\n" +
                 "                                <h4>项目单位信息</h4>\n" +
@@ -604,16 +613,19 @@
                 "                            </div>\n" +
                 "                        </div>\n" +
                 "                    </div>\n" +
-                "                    <div class=\"col-lg-4\">\n" +
+                "                    <div class=\"col-lg-4 item"+i+" \">\n" +
                 "                        <div class=\"card\">\n" +
                 "                            <div class=\"card-header d-flex align-items-center\">\n" +
                 "                                <h4>单价信息</h4>\n" +
                 "                            </div>\n" +
                 "                            <div class=\"card-body\">\n" +
                 "                                <form>\n" +
-                "                                    <div class=\"form-group\">\n" +
-                "                                        <label for=\"product_num"+i+"\">数量</label>\n" +
-                "                                        <input type=\"number\" id=\"product_num"+i+"\" placeholder=\"数量\" class=\"form-control\">\n" +
+                "                                    <div class=\"form-group form-inline\">\n" +
+                "                                        <label>数量</label>\n" +
+                "                                        <div class=\"form-inline\">\n" +
+                "                                           <input type=\"number\" id=\"product_num"+i+"\" placeholder=\"数量\" class=\"form-control\">\n" +
+                "                                           <div id=\"del_item"+i+"\" onclick='delete_bill("+i+")' class=\"btn form-control del-item\">删除</div>" +
+                "                                        </div>\n" +
                 "                                    </div>\n" +
                 "                                    <div class=\"form-group\">\n" +
                 "                                        <label for=\"price"+i+"\">单价</label>\n" +
