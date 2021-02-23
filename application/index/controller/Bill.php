@@ -5,6 +5,7 @@ namespace app\index\controller;
 
 use app\index\model\BillItemModel;
 use app\index\model\BillModel;
+use PHPExcel_Writer_HTML;
 use think\Loader;
 use PHPExcel;
 use think\db\Where;
@@ -232,6 +233,7 @@ class Bill extends Base
             $billModel = new BillModel();
             $billItemModel = new BillItemModel();
             $id = input('get.id');
+            $type = input('get.type');
             $where = ['id' => $id];
             $data = $billModel->getSpecificBill($where)["data"];
             $where = ['bill' => $id];
@@ -278,12 +280,18 @@ class Bill extends Base
                 $i--;
             }
 
-            $filename = $data["customer"]."-".$data["book_date"];
-            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
-            header('Cache-Control: max-age=0');
-            $writer = \PHPExcel_IOFactory::createWriter($excelModel, 'Excel2007');
-            $writer->save('php://output');
+            if ($type == 0) {
+                $filename = $data["customer"]."-".$data["book_date"];
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
+                header('Cache-Control: max-age=0');
+                $writer = \PHPExcel_IOFactory::createWriter($excelModel, 'Excel2007');
+                $writer->save('php://output');
+            } else {
+                $objWriteHTML = new PHPExcel_Writer_HTML($excelModel); //输出网页格式的对象
+                $objWriteHTML->save('php://output');
+            }
+
         } catch (\PHPExcel_Exception $e) {
             return apiReturn(CODE_ERROR, $e->getMessage(), 0, 200);
         }
