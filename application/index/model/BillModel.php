@@ -101,8 +101,8 @@ class BillModel extends Model
      */
     public function getBill($where = []) {
         try {
-            if ($where == []) $result = $this->select();
-            else $result = $this->where($where)->select();
+            if ($where == []) $result = $this->order('id', 'desc')->select();
+            else $result = $this->where($where)->order('id', 'desc')->select();
             return ['code' => CODE_SUCCESS, 'msg' => '查询成功', 'data' => $result];
         } catch(DbException $e) {
             return ['code' => CODE_ERROR, 'msg' => '数据库异常', 'data' => $e->getMessage()];
