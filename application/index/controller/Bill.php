@@ -45,27 +45,32 @@ class Bill extends Base
             "source"    => $req["source"],
             "writer"    => $req["writer"],
             "comment"  => $req["comment"],
-            "deliver_date"  => $req["deliver_date"],
             "book_date" => date("Y-m-d H:i:s")
         ];
+        if ($req["deliver_date"] != "") {
+            $data["deliver_date"] = $req["deliver_date"];
+        }
         $resp = $billModel->updateBill($id, $data);
-        foreach ($req["items"] as $item) {
-            $data = [
-                "product"   => $item["product"],
-                "width"     => $item["width"],
-                "height"    => $item["height"],
-                "length_unit" => $item["length_unit"],
-                "price_unit"    => $item["price_unit"],
-                "price"     => round($item["price"], 2),
-                "remark"    => $item["remark"],
-                "amount"    => round($item["amount"], 2),
-                "product_num"   => $item["product_num"],
-            ];
-            $resp = $billItemModel->updateItem($item["id"], $data);
-            if ($resp["code"] != CODE_SUCCESS) {
-                return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+        if (isset($req["items"])) {
+            foreach ($req["items"] as $item) {
+                $data = [
+                    "product"   => $item["product"],
+                    "width"     => $item["width"],
+                    "height"    => $item["height"],
+                    "length_unit" => $item["length_unit"],
+                    "price_unit"    => $item["price_unit"],
+                    "price"     => round($item["price"], 2),
+                    "remark"    => $item["remark"],
+                    "amount"    => round($item["amount"], 2),
+                    "product_num"   => $item["product_num"],
+                ];
+                $resp = $billItemModel->updateItem($item["id"], $data);
+                if ($resp["code"] != CODE_SUCCESS) {
+                    return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
+                }
             }
         }
+
         return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
     }
 
@@ -187,27 +192,31 @@ class Bill extends Base
             "source"    => $req["source"],
             "writer"    => $req["writer"],
             "comment"  => $req["comment"],
-            "deliver_date"  => $req["deliver_date"],
             "book_date" => date("Y-m-d H:i:s")
         ];
+        if ($req["deliver_date"] != "") {
+            $data["deliver_date"] = $req["deliver_date"];
+        }
         $resp = $billModel->addBill($data);
         $bill_id = $resp["data"];
-        foreach ($req["items"] as $item) {
-            $data = [
-                "product"   => $item["product"],
-                "width"     => $item["width"],
-                "height"    => $item["height"],
-                "length_unit" => $item["length_unit"],
-                "price_unit"    => $item["price_unit"],
-                "price"     => round($item["price"], 2),
-                "remark"    => $item["remark"],
-                "amount"    => round($req["amount"], 2),
-                "product_num"   => $item["product_num"],
-                "bill"      => $bill_id,
-            ];
-            $res = $billItemModel->addItem($data);
-            if ($res["code"] != CODE_SUCCESS) {
-                return apiReturn($res['code'], $res['msg'], $res['data'], 200);
+        if (isset($req["items"])) {
+            foreach ($req["items"] as $item) {
+                $data = [
+                    "product"   => $item["product"],
+                    "width"     => $item["width"],
+                    "height"    => $item["height"],
+                    "length_unit" => $item["length_unit"],
+                    "price_unit"    => $item["price_unit"],
+                    "price"     => round($item["price"], 2),
+                    "remark"    => $item["remark"],
+                    "amount"    => round($req["amount"], 2),
+                    "product_num"   => $item["product_num"],
+                    "bill"      => $bill_id,
+                ];
+                $res = $billItemModel->addItem($data);
+                if ($res["code"] != CODE_SUCCESS) {
+                    return apiReturn($res['code'], $res['msg'], $res['data'], 200);
+                }
             }
         }
         return apiReturn($resp['code'], $resp['msg'], $resp['data'], 200);
